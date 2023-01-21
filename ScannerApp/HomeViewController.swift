@@ -26,6 +26,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         centralManager = CBCentralManager(delegate: self, queue: nil)
+        
+        homeTableView.register(UITableViewCell.self, forCellReuseIdentifier: "DeviceCell")
         homeTableView.delegate = self
         homeTableView.dataSource = self
         
