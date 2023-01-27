@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F39B55A92984236E00D41ED2 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F39B55A82984236E00D41ED2 /* CustomTableViewCell.xib */; };
 		F39B55AB2984242300D41ED2 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39B55AA2984242300D41ED2 /* CustomTableViewCell.swift */; };
+		F39B55AD298463F700D41ED2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39B55AC298463F700D41ED2 /* DetailViewController.swift */; };
 		F3CC52D0297C1A5F00F104FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC52CF297C1A5F00F104FF /* AppDelegate.swift */; };
 		F3CC52D2297C1A5F00F104FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC52D1297C1A5F00F104FF /* SceneDelegate.swift */; };
 		F3CC52D4297C1A5F00F104FF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC52D3297C1A5F00F104FF /* HomeViewController.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		F39B55A82984236E00D41ED2 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		F39B55AA2984242300D41ED2 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		F39B55AC298463F700D41ED2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F3CC52CC297C1A5F00F104FF /* ScannerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScannerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3CC52CF297C1A5F00F104FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3CC52D1297C1A5F00F104FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				F3CC52CF297C1A5F00F104FF /* AppDelegate.swift */,
 				F3CC52D1297C1A5F00F104FF /* SceneDelegate.swift */,
 				F3CC52D3297C1A5F00F104FF /* HomeViewController.swift */,
+				F39B55AC298463F700D41ED2 /* DetailViewController.swift */,
 				F39B55AA2984242300D41ED2 /* CustomTableViewCell.swift */,
 				F3CC52D5297C1A5F00F104FF /* Main.storyboard */,
 				F3CC52D8297C1A6000F104FF /* Assets.xcassets */,
@@ -147,6 +150,7 @@
 			files = (
 				F3CC52D4297C1A5F00F104FF /* HomeViewController.swift in Sources */,
 				F3CC52D0297C1A5F00F104FF /* AppDelegate.swift in Sources */,
+				F39B55AD298463F700D41ED2 /* DetailViewController.swift in Sources */,
 				F39B55AB2984242300D41ED2 /* CustomTableViewCell.swift in Sources */,
 				F3CC52D2297C1A5F00F104FF /* SceneDelegate.swift in Sources */,
 			);

@@ -43,11 +43,19 @@ class HomeViewController: UIViewController {
     @IBAction func scanButtonTapped(_ sender: Any) {
         centralManager.scanForPeripherals(withServices: nil, options: nil)
     }
+    
 
 
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedPeripheral = discoveredDevices[indexPath.row]
+            performSegue(withIdentifier: "ShowSegueDetail", sender: selectedPeripheral)
+        
+    }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
@@ -97,7 +105,7 @@ extension HomeViewController: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         // Extract the peripheral's name and other relevant information from the advertisement data
-        let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String ?? "Unknown"
+        let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String ?? advertisementData[CBAdvertisementDataManufacturerDataKey] as? String ?? "Unknown"
         let uuid = peripheral.identifier.uuidString
         let rssi = RSSI.stringValue
         
