@@ -12,6 +12,7 @@ struct DiscoveredDevice {
     var name: String
     var uuid: String
     var rssi: String
+    var date: String
 }
 
 class HomeViewController: UIViewController {
@@ -63,7 +64,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             print("Hello")
             cell.nameLabel.text = device.name
             cell.rssiLabel.text = device.rssi
-            cell.dateLabel.text = "January 27"
+            cell.dateLabel.text = device.date
             
             return cell
         }
@@ -99,9 +100,15 @@ extension HomeViewController: CBCentralManagerDelegate {
         let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String ?? "Unknown"
         let uuid = peripheral.identifier.uuidString
         let rssi = RSSI.stringValue
-
+        
+        // Get the current date and time
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
+        let dateString = dateFormatter.string(from: date)
+        
         // Add the peripheral to an array of discovered devices
-        discoveredDevices.append(DiscoveredDevice(name: name, uuid: uuid, rssi: rssi))
+        discoveredDevices.append(DiscoveredDevice(name: name, uuid: uuid, rssi: rssi, date: dateString))
         homeTableView.reloadData()
     }
     
