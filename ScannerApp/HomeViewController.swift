@@ -26,12 +26,17 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         centralManager = CBCentralManager(delegate: self, queue: nil)
-        
-        homeTableView.register(UITableViewCell.self, forCellReuseIdentifier: "DeviceCell")
-        homeTableView.delegate = self
+        customTableView()
+    }
+    
+    private func customTableView() {
         homeTableView.dataSource = self
+        homeTableView.delegate = self
         
-        
+        let textFieldCell = UINib(nibName: "CustomTableViewCell",
+                                      bundle: nil)
+        self.homeTableView.register(textFieldCell,
+                                    forCellReuseIdentifier: "CustomTableViewCell")
     }
     
     @IBAction func scanButtonTapped(_ sender: Any) {
@@ -42,17 +47,29 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return discoveredDevices.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceCell", for: indexPath)
-        let device = discoveredDevices[indexPath.row]
-
-        cell.textLabel?.text = device.name
-        cell.detailTextLabel?.text = "UUID: \(device.uuid) RSSI: \(device.rssi)"
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell") as? CustomTableViewCell {
+            let device = discoveredDevices[indexPath.row]
+            
+            print("Hello")
+            cell.nameLabel.text = device.name
+            cell.rssiLabel.text = device.rssi
+            cell.dateLabel.text = "January 27"
+            
+            return cell
+        }
+        
+        return UITableViewCell()
+        
     }
     
 }
