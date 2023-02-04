@@ -23,10 +23,12 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         centralManager = CBCentralManager(delegate: self, queue: nil)
         modelLabel.isHidden = true
         manufacturerLabel.isHidden = true
+        self.navigationController?.navigationBar.tintColor = .black
     }
 }
 
