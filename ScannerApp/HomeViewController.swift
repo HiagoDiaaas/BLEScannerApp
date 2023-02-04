@@ -13,9 +13,16 @@ struct DiscoveredDevice {
     var uuid: String
     var rssi: String
     var date: String
+    var peripheral: CBPeripheral
 }
 
 class HomeViewController: UIViewController {
+    
+    var peripherals = [CBPeripheral]()
+    var selectedDevice: DiscoveredDevice!
+    let heartRateDeviceService = CBUUID(string: "0x180A")
+    let modelNumberStringCharacteristicCBUUID = CBUUID(string: "2A24")
+    
     
     var centralManager: CBCentralManager!
     @IBOutlet weak var scanButton: UIButton!
@@ -51,10 +58,28 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedPeripheral = discoveredDevices[indexPath.row]
-            performSegue(withIdentifier: "ShowSegueDetail", sender: selectedPeripheral)
-        
-    }
+            selectedDevice = discoveredDevices[indexPath.row]
+            performSegue(withIdentifier: "ShowSegueDetail", sender: selectedDevice)
+        }
+    
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        selectedDevice = discoveredDevices[indexPath.row]
+//        performSegue(withIdentifier: "ShowSegueDetail", sender: nil)
+//    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "ShowSegueDetail" {
+                let detailVC = segue.destination as! DetailViewController
+                if let device = sender as? DiscoveredDevice {
+                    detailVC.device = device
+                    detailVC.peripheral = device.peripheral
+                }
+            }
+        }
+    
+    
+
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -69,7 +94,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell") as? CustomTableViewCell {
             let device = discoveredDevices[indexPath.row]
             
-            print("Hello")
             cell.nameLabel.text = device.name
             cell.rssiLabel.text = device.rssi
             cell.dateLabel.text = device.date
@@ -104,19 +128,24 @@ extension HomeViewController: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        // Extract the peripheral's name and other relevant information from the advertisement data
+        
         let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String ?? advertisementData[CBAdvertisementDataManufacturerDataKey] as? String ?? "Unknown"
         let uuid = peripheral.identifier.uuidString
         let rssi = RSSI.stringValue
         
-        // Get the current date and time
+        
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
         let dateString = dateFormatter.string(from: date)
         
-        // Add the peripheral to an array of discovered devices
-        discoveredDevices.append(DiscoveredDevice(name: name, uuid: uuid, rssi: rssi, date: dateString))
+        if !peripherals.contains(peripheral) {
+                peripherals.append(peripheral)
+                homeTableView.reloadData()
+            }
+        
+       
+        discoveredDevices.append(DiscoveredDevice(name: name, uuid: uuid, rssi: rssi, date: dateString, peripheral: peripheral))
         homeTableView.reloadData()
     }
     
