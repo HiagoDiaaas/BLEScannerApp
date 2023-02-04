@@ -11,12 +11,12 @@ import UIKit
 class DetailViewController: UIViewController {
 
     var device: DiscoveredDevice!
-    var peripheral: CBPeripheral!
+    var selectedPeripheral: CBPeripheral!
     var centralManager: CBCentralManager!
 
-    let heartRateDeviceService = CBUUID(string: "0x180A")
-    let modelNumberStringCharacteristicCBUUID = CBUUID(string: "2A24")
-    let manufacturerNameStringCBUUID = CBUUID(string: "2A29")
+    var heartRateDeviceService = CBUUID(string: "0x180A")
+    var modelNumberStringCharacteristicCBUUID = CBUUID(string: "2A24")
+    var manufacturerNameStringCBUUID = CBUUID(string: "2A29")
 
     @IBOutlet weak var manufacturerLabel: UILabel!
     @IBOutlet weak var modelLabel: UILabel!
@@ -25,16 +25,8 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         centralManager = CBCentralManager(delegate: self, queue: nil)
-
-        // Connect to the selected peripheral
-        guard let peripheral = peripheral else { return }
-        centralManager.connect(peripheral, options: nil)
-
-
-        // Discover services of the selected peripheral
-        peripheral.discoverServices(nil)
-
-        peripheral.delegate = self
+        modelLabel.isHidden = true
+        manufacturerLabel.isHidden = true
     }
 }
 
@@ -44,18 +36,29 @@ extension DetailViewController: CBCentralManagerDelegate, CBPeripheralDelegate {
         switch central.state {
         case .poweredOn:
             print("central.state is .poweredOn")
-            self.centralManager.connect(peripheral, options: nil)
+            centralManager.scanForPeripherals(withServices: [heartRateDeviceService])
         default:
             break
         }
     }
+    
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,
+                        advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        selectedPeripheral = peripheral
+        selectedPeripheral.delegate = self
+        centralManager.stopScan()
+        centralManager.connect(selectedPeripheral)
+    }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        peripheral.discoverServices(nil)
+        print("Connected!")
+        peripheral.discoverServices([heartRateDeviceService])
+        
     }
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         for service in peripheral.services! {
+            print(service)
             peripheral.discoverCharacteristics(nil, for: service)
         }
     }
@@ -64,7 +67,8 @@ extension DetailViewController: CBCentralManagerDelegate, CBPeripheralDelegate {
         for characteristic in service.characteristics! {
             if characteristic.uuid == modelNumberStringCharacteristicCBUUID {
                 peripheral.readValue(for: characteristic)
-            } else if characteristic.uuid == manufacturerNameStringCBUUID {
+            }
+            if characteristic.uuid == manufacturerNameStringCBUUID {
                 peripheral.readValue(for: characteristic)
             }
         }
@@ -74,15 +78,15 @@ extension DetailViewController: CBCentralManagerDelegate, CBPeripheralDelegate {
         if characteristic.uuid == modelNumberStringCharacteristicCBUUID {
             if let model = characteristic.value {
                 self.modelLabel.text = String(data: model, encoding: .utf8)
+                modelLabel.isHidden = false
             }
         }
         if characteristic.uuid == manufacturerNameStringCBUUID {
             if let manufacturer = characteristic.value {
                 self.manufacturerLabel.text = String(data: manufacturer, encoding: .utf8)
+                manufacturerLabel.isHidden = false
             }
         }
     }
-    
-    
 
 }

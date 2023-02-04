@@ -23,7 +23,6 @@ class HomeViewController: UIViewController {
     let heartRateDeviceService = CBUUID(string: "0x180A")
     let modelNumberStringCharacteristicCBUUID = CBUUID(string: "2A24")
     
-    
     var centralManager: CBCentralManager!
     @IBOutlet weak var scanButton: UIButton!
     
@@ -50,8 +49,6 @@ class HomeViewController: UIViewController {
     @IBAction func scanButtonTapped(_ sender: Any) {
         centralManager.scanForPeripherals(withServices: nil, options: nil)
     }
-    
-
 
 }
 
@@ -62,25 +59,15 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             performSegue(withIdentifier: "ShowSegueDetail", sender: selectedDevice)
         }
     
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        selectedDevice = discoveredDevices[indexPath.row]
-//        performSegue(withIdentifier: "ShowSegueDetail", sender: nil)
-//    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if segue.identifier == "ShowSegueDetail" {
                 let detailVC = segue.destination as! DetailViewController
                 if let device = sender as? DiscoveredDevice {
                     detailVC.device = device
-                    detailVC.peripheral = device.peripheral
+                    detailVC.selectedPeripheral = device.peripheral
                 }
             }
         }
-    
-    
-
-    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
@@ -148,8 +135,5 @@ extension HomeViewController: CBCentralManagerDelegate {
         discoveredDevices.append(DiscoveredDevice(name: name, uuid: uuid, rssi: rssi, date: dateString, peripheral: peripheral))
         homeTableView.reloadData()
     }
-    
-    
-    
     
 }

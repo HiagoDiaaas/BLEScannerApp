@@ -63,20 +63,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manufacturer Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJq-sa-xvQ">
-                                <rect key="frame" x="16" y="149" width="152" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qq2-Gz-ZBh">
-                                <rect key="frame" x="143" y="110" width="41.333333333333343" height="21"/>
+                                <rect key="frame" x="133" y="109" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8p-ij-yXY">
-                                <rect key="frame" x="190" y="149" width="41.333333333333343" height="21"/>
+                                <rect key="frame" x="233.66666666666666" y="147" width="41.333333333333343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Manufacturer Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJq-sa-xvQ">
+                                <rect key="frame" x="16" y="148" width="152" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -87,16 +87,16 @@
                         <constraints>
                             <constraint firstItem="cyR-EM-4p9" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NBc-QJ-fNg" secondAttribute="trailing" symbolic="YES" id="2yf-xc-wZa"/>
                             <constraint firstItem="NBc-QJ-fNg" firstAttribute="leading" secondItem="IJq-sa-xvQ" secondAttribute="leading" id="34c-LF-3QK"/>
-                            <constraint firstItem="V8p-ij-yXY" firstAttribute="baseline" secondItem="IJq-sa-xvQ" secondAttribute="baseline" id="4mv-K0-QYo"/>
-                            <constraint firstItem="cyR-EM-4p9" firstAttribute="trailing" secondItem="V8p-ij-yXY" secondAttribute="trailing" constant="158.66666666666666" id="4yh-FJ-J6d"/>
-                            <constraint firstItem="V8p-ij-yXY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IJq-sa-xvQ" secondAttribute="trailing" symbolic="YES" id="9bV-u3-ggs"/>
+                            <constraint firstItem="V8p-ij-yXY" firstAttribute="baseline" secondItem="IJq-sa-xvQ" secondAttribute="baseline" constant="-1" id="4mv-K0-QYo"/>
+                            <constraint firstItem="cyR-EM-4p9" firstAttribute="trailing" secondItem="V8p-ij-yXY" secondAttribute="trailing" constant="115" id="4yh-FJ-J6d"/>
+                            <constraint firstItem="V8p-ij-yXY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IJq-sa-xvQ" secondAttribute="trailing" constant="8" symbolic="YES" id="9bV-u3-ggs"/>
                             <constraint firstItem="cyR-EM-4p9" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Qq2-Gz-ZBh" secondAttribute="trailing" symbolic="YES" id="Cdp-vi-YsB"/>
                             <constraint firstItem="NBc-QJ-fNg" firstAttribute="top" secondItem="cyR-EM-4p9" secondAttribute="top" constant="19" id="FTs-qb-nsh"/>
-                            <constraint firstItem="IJq-sa-xvQ" firstAttribute="top" secondItem="NBc-QJ-fNg" secondAttribute="bottom" constant="18" id="Onr-fj-nSP"/>
+                            <constraint firstItem="IJq-sa-xvQ" firstAttribute="top" secondItem="NBc-QJ-fNg" secondAttribute="bottom" constant="17" id="Onr-fj-nSP"/>
                             <constraint firstItem="cyR-EM-4p9" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IJq-sa-xvQ" secondAttribute="trailing" symbolic="YES" id="WPT-zO-ZFB"/>
-                            <constraint firstItem="Qq2-Gz-ZBh" firstAttribute="leading" secondItem="NBc-QJ-fNg" secondAttribute="trailing" constant="30" id="aAI-Km-lhq"/>
+                            <constraint firstItem="Qq2-Gz-ZBh" firstAttribute="leading" secondItem="NBc-QJ-fNg" secondAttribute="trailing" constant="20" id="aAI-Km-lhq"/>
                             <constraint firstItem="NBc-QJ-fNg" firstAttribute="leading" secondItem="L7P-FO-FSb" secondAttribute="leadingMargin" id="rgz-1E-aAd"/>
-                            <constraint firstItem="Qq2-Gz-ZBh" firstAttribute="baseline" secondItem="NBc-QJ-fNg" secondAttribute="baseline" id="tSC-DA-c3p"/>
+                            <constraint firstItem="Qq2-Gz-ZBh" firstAttribute="baseline" secondItem="NBc-QJ-fNg" secondAttribute="baseline" constant="-1" id="tSC-DA-c3p"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="MsX-MD-tBa"/>
