@@ -22,9 +22,15 @@ class HomeViewController: UIViewController {
     var selectedDevice: DiscoveredDevice!
     let heartRateDeviceService = CBUUID(string: "0x180A")
     let modelNumberStringCharacteristicCBUUID = CBUUID(string: "2A24")
+    var timer = Timer()
+    var isScanning = false
+    
     
     var centralManager: CBCentralManager!
+    
     @IBOutlet weak var scanButton: UIButton!
+    @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
     
     @IBOutlet weak var homeTableView: UITableView!
     var discoveredDevices = [DiscoveredDevice]()
@@ -47,9 +53,29 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func scanButtonTapped(_ sender: Any) {
-        centralManager.scanForPeripherals(withServices: nil, options: nil)
+        if !isScanning {
+            timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: false, block: { [weak self] (timer) in
+                self?.centralManager.stopScan()
+                self?.isScanning = false
+            })
+            centralManager.scanForPeripherals(withServices: nil, options: nil)
+            isScanning = true
+        }
     }
-
+    
+    @IBAction func stopButtonTapped(_ sender: Any) {
+        timer.invalidate()
+        centralManager.stopScan()
+        isScanning = false
+    }
+    
+    @IBAction func clearButtonTapped(_ sender: Any) {
+        discoveredDevices.removeAll()
+        homeTableView.reloadData()
+    }
+    
+    
+    
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {

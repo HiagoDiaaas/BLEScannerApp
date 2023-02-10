@@ -16,38 +16,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="VZr-PG-acF">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="VZr-PG-acF">
                                 <rect key="frame" x="0.0" y="156" width="390" height="672"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Abm-Os-dCg">
-                                <rect key="frame" x="127" y="113" width="136" height="35"/>
+                                <rect key="frame" x="164.33333333333334" y="97" width="61.333333333333343" height="35"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Start Scanning"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Start"/>
                                 <connections>
                                     <action selector="scanButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6HR-ZR-LnG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDa-Y4-Dfm">
+                                <rect key="frame" x="314.33333333333331" y="97" width="59.666666666666686" height="35"/>
+                                <color key="backgroundColor" red="1" green="0.1176470588" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Stop"/>
+                                <connections>
+                                    <action selector="stopButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f5O-NT-cQI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GmZ-Bs-bq4">
+                                <rect key="frame" x="27" y="97" width="64" height="35"/>
+                                <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Clear"/>
+                                <connections>
+                                    <action selector="clearButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Thz-gH-8Jn"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Abm-Os-dCg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="22" id="69a-J3-7sC"/>
-                            <constraint firstItem="Abm-Os-dCg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sCO-Aw-iop"/>
+                            <constraint firstItem="VZr-PG-acF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3Q6-8n-8K0"/>
+                            <constraint firstItem="DDa-Y4-Dfm" firstAttribute="baseline" secondItem="Abm-Os-dCg" secondAttribute="baseline" id="5fT-ds-kik"/>
+                            <constraint firstItem="VZr-PG-acF" firstAttribute="centerX" secondItem="Abm-Os-dCg" secondAttribute="centerX" id="8rk-0N-wtT"/>
+                            <constraint firstItem="DDa-Y4-Dfm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="6" id="ABj-7R-ffF"/>
+                            <constraint firstItem="GmZ-Bs-bq4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="27" id="AfP-bO-duV"/>
+                            <constraint firstItem="VZr-PG-acF" firstAttribute="top" secondItem="Abm-Os-dCg" secondAttribute="bottom" constant="24" id="DsT-5S-az6"/>
+                            <constraint firstItem="GmZ-Bs-bq4" firstAttribute="baseline" secondItem="Abm-Os-dCg" secondAttribute="baseline" id="gpy-Vt-eCN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DDa-Y4-Dfm" secondAttribute="trailing" constant="16" id="ifv-ZV-wws"/>
+                            <constraint firstItem="DDa-Y4-Dfm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Abm-Os-dCg" secondAttribute="trailing" constant="8" symbolic="YES" id="oT2-RO-tj6"/>
+                            <constraint firstItem="Abm-Os-dCg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GmZ-Bs-bq4" secondAttribute="trailing" constant="8" symbolic="YES" id="r9m-xN-qJS"/>
+                            <constraint firstAttribute="trailing" secondItem="VZr-PG-acF" secondAttribute="trailing" id="yC1-ru-ZO5"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="VZr-PG-acF" secondAttribute="bottom" constant="-18" id="zPk-kB-rkn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Scanner" id="ivR-oT-2Rj"/>
                     <connections>
+                        <outlet property="clearButton" destination="GmZ-Bs-bq4" id="QLf-Ah-UIT"/>
                         <outlet property="homeTableView" destination="VZr-PG-acF" id="5QD-RI-53W"/>
                         <outlet property="scanButton" destination="Abm-Os-dCg" id="dcO-rw-QMU"/>
+                        <outlet property="stopButton" destination="DDa-Y4-Dfm" id="ghb-9S-awl"/>
                         <segue destination="II5-dz-yBf" kind="show" identifier="ShowSegueDetail" id="UCc-Xw-Yxc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1962" y="-34"/>
+            <point key="canvasLocation" x="1961.5384615384614" y="-34.123222748815166"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="YCm-Dp-bZV">
